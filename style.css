@@ -39,20 +39,7 @@ nav {
 /* HERO */
 .title-with-logo { display: flex; align-items: center; gap: 15px; }
 .hero-logo { width: 60px; height: 60px; object-fit: contain; }
-/* Tambahkan ini biar semua logo & foto gak kepaksa gepeng */
-img {
-    max-width: 100%;
-    height: auto !important; /* Ini wajib biar tinggi ngikutin lebar */
-    object-fit: contain; 
-}
 
-/* Khusus Logo di Footer biar tetep proporsional */
-.footer-logo img {
-    width: 80px; 
-    height: auto !important; /* Paksa auto biar gak gepeng */
-    display: block;
-    margin: 0 auto;
-}
 .hero { height: 100vh; background: var(--dark); display: flex; align-items: center; padding: 0 10%; color: white; justify-content: space-between; }
 .hero-text h1 { font-size: 3rem; margin: 0; }
 
@@ -471,4 +458,52 @@ body {
     width: 80px;         /* Ukuran lebih pas buat HP */
     height: auto;        /* KUNCI: Biar tingginya ngikutin lebar, jadi gak gepeng */
     object-fit: contain; /* Memastikan gambar tetap utuh di dalam area */
+}
+
+@media (max-width: 768px) {
+    /* 1. Bikin Hero & Window Code Rata Tengah */
+    .hero {
+        flex-direction: column !important;
+        justify-content: center !important;
+        text-align: center !important;
+        height: auto !important;
+        padding: 80px 20px !important;
+        gap: 30px;
+    }
+
+    .window-code {
+        margin: 0 auto !important; /* Paksa ke tengah */
+        width: 100% !important;
+        max-width: 320px;
+    }
+
+    /* 2. FIX OUR MOMENT (Biar Gak Kepotong) */
+    .moments-grid {
+        display: grid !important; /* Balikin ke grid, jangan flex */
+        grid-template-columns: 1fr !important; /* Satu kolom aja di HP biar gede */
+        gap: 20px !important;
+        width: 100% !important;
+        padding: 0 10px !important;
+    }
+
+    .moment-item {
+        width: 100% !important;
+        height: 250px !important; /* Tetap kasih tinggi biar gak gepeng */
+        margin: 0 auto;
+    }
+
+    /* 3. Global Anti-Gepeng buat Semua Gambar */
+    img {
+        height: auto !important; 
+        object-fit: cover !important; /* Biar foto moments tetep cakep */
+    }
+
+    /* 4. Footer Rata Tengah */
+    .footer-container, .footer-content {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        gap: 20px !important;
+    }
 }
