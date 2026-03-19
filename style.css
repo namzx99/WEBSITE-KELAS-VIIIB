@@ -860,3 +860,74 @@ html, body {
     transform: translateX(5px); /* Efek geser dikit pas di-hover */
 }
 
+/* FIX LOGO BIAR BULAT SEMPURNA & GAK PEOT */
+.hero-logo, .lingkaran-foto img {
+    width: 80px !important;
+    height: 80px !important;
+    border-radius: 50% !important;
+    object-fit: cover !important; /* Kunci biar gak gepeng */
+    display: block;
+    flex-shrink: 0;
+}
+
+/* FIX WINDOW CODE: PAKSA KE KIRI DI HP */
+.win-head {
+    display: flex !important;
+    justify-content: flex-start !important; /* Paksa ke kiri */
+    gap: 8px;
+    padding: 12px 15px;
+    background: #2d2d2d;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.win-head span {
+    width: 12px !important;
+    height: 12px !important;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 !important; /* Reset margin biar rapi */
+}
+
+/* Responsif buat HP */
+@media (max-width: 768px) {
+    .title-with-logo {
+        flex-direction: column;
+        text-align: center;
+    }
+    .window-code {
+        width: 100%;
+        margin: 20px auto;
+    }
+}
+
+/* Kunci biar lirik cuma muncul satu baris dan gak numpuk */
+.lyrics-window {
+    height: 50px; /* Tinggi satu baris */
+    overflow: hidden;
+    position: relative;
+    margin: 20px 0;
+}
+
+#lyricsContainer {
+    display: block;
+    transition: transform 0.4s ease-in-out;
+    text-align: center;
+    width: 100%;
+}
+
+.lyric-line {
+    height: 50px; /* Harus sama dengan tinggi lyrics-window */
+    line-height: 50px;
+    margin: 0 !important;
+    padding: 0 !important;
+    opacity: 0.2;
+    transition: all 0.3s;
+}
+
+.lyric-line.active {
+    opacity: 1;
+    color: #00c3ff;
+    transform: scale(1.1);
+}
+
