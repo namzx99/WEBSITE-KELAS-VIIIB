@@ -422,3 +422,23 @@ audio.onended = () => {
     visualizer.classList.remove('playing');
     lyricsContainer.style.transform = `translateY(0)`;
 };
+
+audio.ontimeupdate = () => {
+    const time = audio.currentTime;
+    
+    // ... kode progress bar lu tetep biarin ...
+
+    dataLirik.forEach((item, index) => {
+        if (time >= item.time) {
+            // Hapus semua class active dulu
+            document.querySelectorAll('.lyric-line').forEach(l => l.classList.remove('active'));
+            
+            const activeLine = document.getElementById(`lyric-${index}`);
+            if (activeLine) {
+                activeLine.classList.add('active');
+                // Geser container lirik ke ATAS (berdasarkan index * tinggi baris)
+                lyricsContainer.style.transform = `translateY(-${index * 50}px)`;
+            }
+        }
+    });
+};
