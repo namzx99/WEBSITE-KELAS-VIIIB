@@ -1,0 +1,162 @@
+/* style.css */
+
+/* Reset Dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* Warna Background Toska */
+    background: radial-gradient(circle, #1abc9c 0%, #0e6251 100%);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    overflow: hidden;
+}
+
+h1 { 
+    font-size: 3.5rem; 
+    font-weight: 900; 
+    font-style: italic;
+    animation: muncul 0.8s ease-out;
+}
+
+h2 { 
+    font-size: 0.9rem; 
+    letter-spacing: 2px; 
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+/* KOTAK FOTO */
+.card {
+    width: 90%;
+    max-width: 450px; /* Ukuran maksimal kotak */
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    overflow: hidden; /* Biar ujung foto ikut melengkung */
+    border: 1px solid rgba(255,255,255,0.2);
+    animation: zoom 1s ease-out;
+}
+
+/* SETTING FOTO BIAR PAS */
+.card img { 
+    width: 100%;       /* Lebar penuh mengikuti kotak */
+    height: auto;      /* Tinggi otomatis biar GAK PENYET */
+    display: block; 
+    object-fit: contain; /* Memastikan seluruh isi foto terlihat */
+}
+
+.next-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #00ffff;
+    color: black;
+    padding: 12px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+    transition: 0.3s;
+}
+
+.next-btn:hover {
+    background: white;
+    transform: scale(1.1);
+}
+
+/* Animasi Muncul */
+@keyframes muncul {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes zoom {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+ /* --- ANIMASI KEYFRAMES --- */
+    @keyframes munculKeAtas {
+        from { opacity: 0; transform: translateY(30px); }
+        to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        body {
+            background: radial-gradient(circle, #1abc9c 0%, #0e6251 100%);
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        h1 { 
+            font-size: 3.5rem; 
+            margin: 0; 
+            font-weight: 900; 
+            font-style: italic;
+            animation: munculKeAtas 0.8s ease-out forwards;
+        }
+
+        h2 { 
+            font-size: 0.8rem; 
+            letter-spacing: 2px; 
+            margin-bottom: 20px;
+            animation: munculKeAtas 0.8s ease-out 0.3s forwards;
+            opacity: 0;
+        }
+
+        .card {
+            width: 85%;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.2);
+            animation: zoomIn 1s ease-out 0.6s forwards;
+            opacity: 0;
+        }
+
+        .card img { width: 100%; display: block; }
+
+        .next-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #00ffff;
+            color: black;
+            padding: 10px 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+            animation: munculKeAtas 0.8s ease-out 1s forwards;
+            opacity: 0;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .next-btn:hover {
+            background: white;
+            transform: scale(1.1);
+        }

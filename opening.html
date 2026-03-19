@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIII B - MTs Muhammadiyah</title>
+    <link rel="stylesheet" href="style2.css">
+    <style>
+    </style>
+</head>
+    </style>
+</head>
+<body>
+
+    <audio id="myAudio" loop>
+        <source src="laguopening2.mp3" type="audio/mpeg">
+        Browser kamu tidak mendukung audio.
+    </audio>
+
+    <h1>VIII B</h1>
+    <h2>MTS MUHAMMADIYYAH 01 PURBALINGGA</h2>
+
+    <div class="card">
+        <img src="welcome.jpeg">
+    </div>
+
+    <a href="index.html" class="next-btn">NEXT</a>
+
+    <script>
+        window.addEventListener('load', function() {
+            var audio = document.getElementById("myAudio");
+            
+            audio.play().catch(function(error) {
+                console.log("Autoplay diblokir oleh browser. Musik akan mulai saat kamu mengklik layar.");
+        
+                document.body.addEventListener('click', function() {
+                    audio.play();
+                }, { once: true });
+            });
+        });
+    </script>
+
+</body>
+</html>

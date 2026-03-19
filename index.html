@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIII B | Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+
+    <nav>
+        <div class="lingkaran-foto"><img src="logo.jpeg" alt="logo.jpeg" class="hero-logo"> <span></span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#teachers">Teachers</a></li>
+            <li><a href="#squad">Squad</a></li>
+            <li><a href="#music">Music</a></li>
+            <li><a href="#moments">Moment</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-text" data-aos="fade-right">
+            <div class="title-with-logo">
+        <div class="lingkaran-foto"><img src="logo kelas.jpeg" alt="Logo" class="hero-logo"> </div>
+                <h1>Welcome to VIII B coding class</h1>
+            </div>
+            <p>Kelas unggulan yang berada di MTs MUHAMMADIYAH 01 PURBALINGGA</p>
+        </div>
+
+        <div class="code-animation" data-aos="zoom-in">
+            <div class="window-code">
+                <div class="win-head"><span class="r"></span><span class="y"></span><span class="g"></span></div>
+                <div class="win-body">
+                    <p><span class="keyword">const</span> <span class="var">eightB</span> = {</p>
+                    <p class="idnt"><span class="prop">status</span>: <span class="str">"Solid"</span>,</p>
+                    <p class="idnt"><span class="prop">energy</span>: <span class="num">100</span>,</p>
+                    <p class="idnt"><span class="prop">motto</span>: () => <span class="str">"Be the best version of yourself"</span></p>
+                    <p>};</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <section id="about" class="sheet section-white">
+    <div class="container">
+        <h2 data-aos="fade-up">Tentang Kami</h2>
+        <div class="underline" data-aos="zoom-in"></div>
+        
+        <p class="desc">
+            <span id="typing-text">Kami adalah siswa kelas VIII B yang berdedikasi untuk mengembangkan Skill, Kreativitas dan Solidaritas dalam lingkungan sekolah.
+                kami siswa coding mutulinggga... Bener,Pinter,Trampil.
+            </span>
+        </p>
+    </div>
+</section>
+
+    <section id="teachers" class="sheet section-light">
+        <div class="container">
+            <h2 data-aos="fade-down">BEST TEACHERS</h2>
+            <div class="underline" data-aos="zoom-in"></div>
+            <div class="teachers-grid">
+                <div class="teacher-card" data-aos="zoom-in">
+                    <div class="t-img-box">
+                        <img src="guru.png" alt="Guru">
+                    </div>
+                    <h3>Azhar fahrurijal</h3>
+                    <p>Wali Kelas VIII B</p>
+                    <div class="t-social">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<section class="container-v8">
+    <div class="header-nav">
+        <h2 id="tab-title">Structure <span>& Schedule</span></h2>
+        <div class="underline-glow"></div>
+    </div>
+
+    <div class="nav-switch">
+        <button class="btn-nav active" onclick="showTab('structure')">Structure</button>
+        <button class="btn-nav" onclick="showTab('schedule')">Schedule</button>
+    </div>
+
+    <div class="display-area">
+        
+        <div id="structure" class="tab-pane active">
+            <div class="tree">
+                <div class="node solo">
+                    <p class="role">Wali Kelas</p>
+                    <div class="pill">Azhar Fahrurijal</div>
+                    <div class="v-line"></div>
+                </div>
+
+                <div class="h-connector">
+                    <div class="h-line"></div>
+                    <div class="node-group">
+                        <div class="node">
+                            <p class="role">Ketua Kelas</p>
+                            <div class="pill">Imelda pramono putri</div>
+                        </div>
+                        <div class="node">
+                            <p class="role">Wakil Ketua</p>
+                            <div class="pill">Abyan fikri musyafah</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="v-line long"></div>
+
+                <div class="h-connector">
+                    <div class="h-line"></div>
+                    <div class="node-group">
+                        <div class="node">
+                            <p class="role">Sekertaris</p>
+                            <div class="pill mini">Arum istiqomah</div>
+                            <div class="pill mini">Rizka maulidiyah</div>
+                        </div>
+                        <div class="node">
+                            <p class="role">Bendahara</p>
+                            <div class="pill mini">Jauza zahra arif</div>
+                            <div class="pill mini">Eva oktifiani</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="schedule" class="tab-pane">
+    <div class="schedule-box">
+        <div class="day-selector">
+            <button class="day-btn active" onclick="changeDay('monday')">Mon</button>
+            <button class="day-btn" onclick="changeDay('tuesday')">Tue</button>
+            <button class="day-btn" onclick="changeDay('wednesday')">Wed</button>
+            <button class="day-btn" onclick="changeDay('thursday')">Thu</button>
+            <button class="day-btn" onclick="changeDay('friday')">Fri</button>
+            <button class="day-btn" onclick="changeDay('saturday')">Sat</button>
+        </div>
+
+        <h3 id="current-day-title" class="day">Monday</h3>
+        
+        <div id="schedule-list-content">
+            </div>
+    </div>
+</div>
+
+    <section id="squad" class="sheet section-dark">
+        <div class="container">
+            <h2 data-aos="fade-down">THE SQUAD</h2>
+            <div class="underline"></div>
+            <div class="members-grid" id="membersGrid"></div>
+        </div>
+    </section>
+
+    <section id="moments" class="sheet section-white">
+        <div class="container">
+            <h2 data-aos="fade-up">Our Moments</h2>
+            <div class="underline"></div>
+            <div class="moments-grid">
+                <div class="moment-item" data-aos="flip-left"><img src="WhatsApp Image 2026-03-18 at 16.52.200.jpeg" alt="1"></div>
+                <div class="moment-item" data-aos="flip-left" data-aos-delay="100"><img src="WhatsApp Image 2026-03-18 at 16.52.400.jpeg" alt="2"></div>
+                <div class="moment-item" data-aos="flip-left" data-aos-delay="200"><img src="WhatsApp Image 2026-03-18 at 16.52.100.jpeg" alt="3"></div>
+                <div class="moment-item" data-aos="flip-right"><img src="WhatsApp Image 2026-03-18 at 16.52.900.jpeg" alt="4"></div>
+                <div class="moment-item" data-aos="flip-left"><img src="gtw.jpeg" alt="1"></div>
+                <div class="moment-item" data-aos="flip-left" data-aos-delay="100"><img src="ada.jpeg" alt="2"></div>
+                <div class="moment-item" data-aos="flip-left" data-aos-delay="200"><img src="memori.jpeg" alt="3"></div>
+                <div class="moment-item" data-aos="flip-right"><img src="WhatsApp Image 2026-03-19 at 15.03.19.jpeg" alt="4"></div>
+            </div>
+        </div>
+    </section>
+
+  <section id="music" class="sheet section-dark music-bg">
+    <div class="music-card" data-aos="zoom-in">
+        <div class="music-header">
+            <div class="music-icon"><i class="fas fa-music"></i></div>
+            <div class="music-title">
+                <h3>Lagu Kelas VIII B</h3>
+                <p>TANTEEEEEE</p>
+            </div>
+        </div>
+
+        <div class="visualizer" id="visualizer">
+            <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+        </div>
+
+        <div class="lyrics-window">
+            <div id="lyricsContainer"></div>
+        </div>
+        
+
+        <audio id="mainAudio" src="music.mp3"></audio> 
+
+       <div class="music-controls">
+    <span id="currentTime">0:00</span>
+    <input type="range" id="progressBar" class="progress" value="0" step="0.1">
+    <span id="duration">0:42</span>
+</div>
+        
+        <button id="playBtn" class="play-btn-circle">
+            <i class="fas fa-play"></i>
+        </button>
+    </div>
+</section>
+
+<div class="footer-column">
+    <h3>FOLLOW US</h3>
+    
+    <a href="https://instagram.com/anamfaizkhoirul" target="_blank" class="footer-link">Instagram</a>
+    
+    <a href="https://namz-project.vercel.app/" target="_blank" class="footer-link">Website</a>
+
+    <a href="https://www.tiktok.com/@namz_bs?is_from_webapp=1&sender_device=pc" target="_blank" class="footer-link">Tiktok</a>
+
+    <p style="margin-top: 15px; font-size: 0.8rem; opacity: 0.7;">Created by Namz(faizkhoirulanam)</p>
+</div>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
