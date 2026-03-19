@@ -32,16 +32,21 @@ nav {
     display: flex; justify-content: space-between; align-items: center;
     background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px); z-index: 1000;
 }
-.nav-links { display: flex; list-style: none; gap: 20px; }
-.nav-links a { text-decoration: none; color: #333; font-weight: bold; transition: 0.3s; }
-.nav-links a:hover { color: var(--primary); }
+.nav-links {
+    overflow-x: auto !important; /* Biar menu atas bisa di-slide kalau kepanjangan */
+    white-space: nowrap;
+    display: flex;
+    -webkit-overflow-scrolling: touch;
+}
 
 /* HERO */
-.title-with-logo { display: flex; align-items: center; gap: 15px; }
-.hero-logo { width: 60px; height: 60px; object-fit: contain; }
-
-.hero { height: 100vh; background: var(--dark); display: flex; align-items: center; padding: 0 10%; color: white; justify-content: space-between; }
-.hero-text h1 { font-size: 3rem; margin: 0; }
+.title-with-logo img, .hero-logo {
+    width: 70px !important;
+    height: 70px !important;
+    border-radius: 50% !important; /* Paksa bulat */
+    object-fit: cover !important; /* Gambar di dalemnya tetep cakep */
+    flex-shrink: 0 !important; /* Anti kegencet flexbox */
+}
 
 .window-code {
     background: #1e1e1e; width: 350px; padding: 20px; border-radius: 12px;
@@ -861,3 +866,19 @@ html, body {
     transform: translateX(5px); /* Efek geser dikit pas di-hover */
 }
 
+@media (max-width: 768px) {
+    /* Bungkus bagian yang lebar biar bisa di-slide pakai jempol */
+    #structure, #schedule {
+        width: 100% !important;
+        overflow-x: auto !important; /* KUNCI: Aktifin scroll horizontal */
+        display: block !important;
+        padding-bottom: 15px;
+        -webkit-overflow-scrolling: touch; /* Biar scroll-nya mulus di HP */
+    }
+
+    /* Paksa bagan di dalemnya punya lebar minimal biar gak tumpuk-tumpukan */
+    .tree, .schedule-box {
+        min-width: 600px !important; 
+        margin: 0 auto;
+    }
+}
