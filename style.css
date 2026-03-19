@@ -842,48 +842,61 @@ body {
 }
 
 @media (max-width: 768px) {
-    /* 1. Navbar: Link dikecilin biar gak numpuk */
+    /* 1. NAVBAR: Biar gak kepotong, kita bikin bisa scroll horizontal kalau kepanjangan */
     nav {
         padding: 10px 5% !important;
-        flex-wrap: wrap; /* Biar kalau gak muat nambah baris bawah, gak maksa ke samping */
+        justify-content: center !important;
     }
     .nav-links {
-        gap: 10px !important;
-        font-size: 0.8rem !important;
+        gap: 12px !important;
+        font-size: 0.75rem !important;
+        flex-wrap: nowrap !important; /* Biar tetap sebaris tapi bisa geser */
+        overflow-x: auto;
+        width: 100%;
+        padding-bottom: 5px;
     }
 
-    /* 2. Logo: Paksa Bulat Sempurna */
-    .hero-logo, .nav-logo img, .footer-logo img {
-        width: 60px !important;
-        height: 60px !important; /* Wajib sama nilainya sama width */
-        border-radius: 50% !important; /* Paksa bulat */
-        object-fit: cover !important; /* Biar gak gepeng di dalem lingkaran */
+    /* 2. LOGO SAMPING WELCOME: Biar GAK GEPENG & BULAT */
+    .hero-logo, .title-with-logo img {
+        width: 70px !important;   /* Ukuran lebar */
+        height: 70px !important;  /* Tinggi WAJIB SAMA biar bulat */
+        min-width: 70px !important;
+        border-radius: 50% !important;
+        object-fit: cover !important; /* Biar gambar di dalemnya gak ketarik */
+        display: block;
+        flex-shrink: 0; /* Biar gak kegencet sama teks sebelah */
     }
 
-    /* 3. Our Moment: ANTI KEPOTONG */
-    #moment, .container, .moments-grid {
-        width: 100% !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        overflow: visible !important; /* Biar kontennya gak kepangkas */
-    }
-
-    .moments-grid {
-        display: flex !important;
-        flex-direction: column !important; /* Tumpuk ke bawah satu-satu */
+    /* 3. HERO SECTION: Biar teks & logo gak tabrakan */
+    .title-with-logo {
+        flex-direction: column !important; /* Tumpuk logo di atas tulisan Welcome */
+        gap: 10px;
         align-items: center !important;
-        gap: 20px !important;
+    }
+    .hero-text h1 {
+        font-size: 1.8rem !important;
+        text-align: center;
+    }
+
+    /* 4. MOMENT & SQUAD: Biar GAK KEPOTONG SAMPING */
+    #moment, #squad, .sheet, .container {
+        width: 100% !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        box-sizing: border-box !important;
+        overflow: visible !important;
+    }
+
+    .moments-grid, .members-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
     }
 
     .moment-item {
-        width: 90% !important; /* Jangan 100% biar ada space dikit di kiri kanan */
-        height: auto !important; /* Biar tingginya ngikutin foto asli */
-        max-height: 300px;
-    }
-
-    /* 4. Window Code Rata Tengah */
-    .window-code {
-        width: 90% !important;
-        margin: 20px auto !important;
+        width: 100% !important;
+        max-width: 350px; /* Biar gak terlalu raksasa di HP */
+        height: auto !important;
     }
 }
