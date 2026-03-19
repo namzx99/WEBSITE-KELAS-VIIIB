@@ -66,13 +66,11 @@ nav {
   height: 100%;
   object-fit: cover;
 }
-/* Logo di Header atau Footer */
-.footer-logo img, .navbar-brand img, .logo-img {
-    width: 100px;         /* Lu boleh ganti ukurannya, misal 80px atau 120px */
-    height: auto !important; /* KUNCI UTAMA: Biar tinggi ngikutin lebar secara otomatis */
-    object-fit: contain;  /* Biar gambar tetep di dalem kotak tanpa kepotong */
-    display: block;
-    margin: 0 auto;       /* Biar logo rata tengah */
+
+.footer-logo img {
+    width: 80px;         /* Ukuran lebih pas buat HP */
+    height: auto;        /* KUNCI: Biar tingginya ngikutin lebar, jadi gak gepeng */
+    object-fit: contain; /* Memastikan gambar tetap utuh di dalam area */
 }
 
 /* TEACHERS UI */
