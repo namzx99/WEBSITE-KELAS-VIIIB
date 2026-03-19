@@ -599,17 +599,6 @@ body {
     }
 }
 
-body, .container-v8 {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    /* Gunakan min-height agar background terus memanjang mengikuti konten */
-    min-height: 100vh; 
-    height: auto !important; 
-    background: radial-gradient(circle at top left, #01b7ee 0%, #ffffff 70%) no-repeat !important;
-    background-attachment: fixed !important; /* Background tetap diam saat di-scroll */
-    background-size: cover !important;
-}
 
 /* Tab Buttons */
 .nav-switch { margin-bottom: 40px; display: flex; justify-content: center; gap: 10px; }
