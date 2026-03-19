@@ -1,21 +1,3 @@
-// --- 1. NAVBAR MOBILE LOGIC (TAMBAHAN BARU) ---
-const menu = document.querySelector('#mobile-menu');
-const menuLinks = document.querySelector('.nav-links');
-
-if (menu) {
-    menu.addEventListener('click', function() {
-        menu.classList.toggle('is-active');
-        menuLinks.classList.toggle('active');
-    });
-}
-
-// Tutup menu otomatis pas link diklik (Biar estetik)
-document.querySelectorAll('.nav-links a').forEach(n => n.addEventListener('click', () => {
-    menu.classList.remove('is-active');
-    menuLinks.classList.remove('active');
-}));
-
-// --- 2. AOS INIT ---
 AOS.init({ 
     duration: 1000, 
     once: false,
@@ -23,9 +5,9 @@ AOS.init({
 });
 
 const grid = document.getElementById('membersGrid');
-
-// --- 3. MESIN KETIK ESTETIK ---
+// --- MESIN KETIK ESTETIK (BISA REPEAT) ---
 const textElement = document.getElementById("typing-text");
+// TULIS TEKSNYA DI SINI (PASTIKAN SPASINYA SUDAH BENAR)
 const fullText = "Kami adalah siswa kelas VIII B yang berdedikasi untuk mengembangkan Skill, Kreativitas dan Solidaritas dalam lingkungan sekolah. kami siswa coding mutulinggga... Bener,Pinter,Trampil.";
 let isTyping = false;
 let currentTimeout;
@@ -38,6 +20,7 @@ function typeWriter() {
 
     function nextChar() {
         if (index < fullText.length) {
+            // Pakai textContent biar spasi dibaca murni apa adanya
             textElement.textContent += fullText.charAt(index);
             index++;
             currentTimeout = setTimeout(nextChar, 40); 
@@ -50,7 +33,6 @@ function typeWriter() {
 
 window.addEventListener('scroll', () => {
     const section = document.getElementById('about');
-    if(!section) return;
     const pos = section.getBoundingClientRect();
 
     if (pos.top < window.innerHeight - 100 && pos.bottom > 100) {
@@ -58,25 +40,30 @@ window.addEventListener('scroll', () => {
             typeWriter();
         }
     } else {
+        // Reset kalau keluar layar biar bisa ngetik ulang (Estetik 🗿)
         clearTimeout(currentTimeout);
         textElement.textContent = ""; 
         isTyping = false;
     }
 });
 
-// --- 4. TAB SYSTEM ---
 function showTab(tabId) {
+    // Sembunyikan semua tab
     document.querySelectorAll('.tab-pane').forEach(tab => {
         tab.classList.remove('active');
     });
+    
+    // Nonaktifkan semua tombol
     document.querySelectorAll('.btn-nav').forEach(btn => {
         btn.classList.remove('active');
     });
+
+    // Tampilkan tab yang diklik
     document.getElementById(tabId).classList.add('active');
+    
+    // Aktifkan tombol yang diklik
     event.currentTarget.classList.add('active');
 }
-
-// --- 5. JADWAL MAPEL ---
 const jadwalMapel = {
     monday: [
         { nama: "Coding", jam: "07.00-08.00" },
@@ -123,12 +110,15 @@ const jadwalMapel = {
 function changeDay(day) {
     const listContent = document.getElementById('schedule-list-content');
     const title = document.getElementById('current-day-title');
-    if(!listContent || !title) return;
     
+    // Update Judul
     title.innerText = day.charAt(0).toUpperCase() + day.slice(1);
-    document.querySelectorAll('.day-btn').forEach(btn => btn.classList.remove('active'));
-    if(event) event.currentTarget.classList.add('active');
 
+    // Update Button Active
+    document.querySelectorAll('.day-btn').forEach(btn => btn.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+
+    // Generate HTML List
     let html = '';
     jadwalMapel[day].forEach(item => {
         const highlightClass = item.special ? 'highlight' : '';
@@ -141,28 +131,204 @@ function changeDay(day) {
     listContent.innerHTML = html;
 }
 
+// Panggil fungsi pertama kali buat nampilin Senin
 window.onload = () => {
+    // Pastikan fungsi ini jalan setelah semua elemen siap
     const defaultBtn = document.querySelector('.day-btn');
     if(defaultBtn) defaultBtn.click(); 
 };
 
-// --- 6. MEMBER GRID (Daftar Siswa) ---
-if(grid) {
-    grid.innerHTML = `
-        <div class="member-card" data-aos="fade-up">
-            <div class="member-img"><img src="WhatsApp Image 2026-03-18 at 15.09.05.jpeg" onerror="this.src='https://via.placeholder.com/150'"></div>
-            <h4>ABYAN FIKRI MUSYAFAH</h4>
-            <p>Wakil Ketua Kelas VIII B</p>
-        </div>
-        <div class="member-card" data-aos="fade-up" data-aos-delay="100">
-            <div class="member-img"><img src="WhatsApp Image 2026-03-18 at 15.09.14.jpeg" onerror="this.src='https://via.placeholder.com/150'"></div>
-            <h4>AFIKA NUR RAMADHANI</h4>
-            <p>Member VIII B</p>
-        </div>
-        `;
-}
+// DAFTAR MANUAL 31 SISWA
+// Lo tinggal copy-paste baris ini kalau mau nambah/ubah detail tiap orang
+grid.innerHTML = `
+    <div class="member-card" data-aos="fade-up">
+        <div class="member-img"><img src="WhatsApp Image 2026-03-18 at 15.09.05.jpeg" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <h4>ABYAN FIKRI MUSYAFAH</h4>
+        <p>Wakil Ketua Kelas VIII B</p>
+    </div>
 
-// --- 7. AUDIO & LYRICS CONTROL ---
+    <div class="member-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="member-img"><img src="WhatsApp Image 2026-03-18 at 15.09.14.jpeg" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <h4>AFIKA NUR RAMADHANI</h4>
+        <p>Member VIII B</p>
+    </div>
+
+    <div class="member-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="member-img"><img src="WhatsApp Image 2026-03-18 at 15.09.60.jpeg" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <h4>ALISA RAHAYU</h4>
+        <p>Member VIII B</p>
+    </div>
+
+    <div class="member-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="member-img"><img src="WhatsApp Image 2026-03-18 at 15.09.19.jpeg" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <h4>ANAJWA NABILATUN KHAIRUN NISA</h4>
+        <p>Member VIII B</p>
+    </div>
+
+    <div class="member-card" data-aos="fade-up">
+        <div class="member-img"><img src="ss" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <h4>ARUM ISTIQOMAH</h4>
+        <p>Member VIII B</p>
+    </div>
+
+    <div class="member-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="member-img"><img src="agus.jpeg" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <h4>BINTANG ANDIKA PERMANA</h4>
+        <p>Member VIII B</p>
+    </div>
+
+    <div class="member-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="member-img"><img src="man.jpeg" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <h4>BINTANG FAIZUL MUBAROK</h4>
+        <p>Member VIII B</p>
+    </div>
+
+    <div class="member-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="member-img"><img src="WhatsApp Image 2026-03-18 at 15.09.13.jpeg" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <h4>DEVA SAFARULLAH</h4>
+        <p>Member VIII B</p>
+    </div>
+
+    <div class="member-card" data-aos="fade-up">
+        <div class="member-img"><img src="sosro.jpeg" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <h4>DIMAS ARJUNAN TOUVANY</h4>
+        <p>Member VIII B</p>
+    </div>
+
+    <div class="member-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="member-img"><img src="WhatsApp Image 2026-03-18 at 15.09.89.jpeg" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <h4>EVA OKTIFIANI</h4>
+        <p>Member VIII B</p>
+    </div>
+
+    <div class="member-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="member-img"><img src="siswa11.jpg" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <h4>FADLI NUR HAKIM</h4>
+        <p>Member VIII B</p>
+    </div>
+
+    <div class="member-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="member-img"><img src="king namz.jpeg" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <h4>FAIZ KHOIRUL ANAM</h4>
+        <p>Member VIII B</p>
+    </div>
+
+    <div class="member-card" data-aos="fade-up">
+        <div class="member-img"><img src="WhatsApp Image 2026-03-18 at 15.09.11.jpeg" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <h4>FATIHUL WAFIQ RADHISTYAWAN</h4>
+        <p>Member VIII B</p>
+    </div>
+
+    <div class="member-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="member-img"><img src="idk.jpeg" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <h4>FELISIA PUTRI AURORA</h4>
+        <p>Member VIII B</p>
+    </div>
+
+    <div class="member-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="member-img"><img src="siswa15.jpg" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <h4>FITMA CLARISTA</h4>
+        <p>Member VIII B</p>
+    </div>
+
+    <div class="member-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="member-img"><img src="siswa16.jpg" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <h4>HANAN ZEIN AL HAZMI</h4>
+        <p>Member VIII B</p>
+    </div>
+
+    <div class="member-card" data-aos="fade-up">
+        <div class="member-img"><img src="WhatsApp Image 2026-03-18 at 16.12.24.jpeg" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <h4>HAURA HUSNA AZIZAH INDRI</h4>
+        <p>Member VIII B</p>
+    </div>
+
+    <div class="member-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="member-img"><img src="xdz.jpeg" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <h4>IMELDA PRAMONO PUTRI</h4>
+        <p>Member VIII B</p>
+    </div>
+
+    <div class="member-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="member-img"><img src="siswa19.jpg" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <h4>JAUZA ZAHRA ARIF</h4>
+        <p>Member VIII B</p>
+    </div>
+
+    <div class="member-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="member-img"><img src="WhatsApp Image 2026-03-18 at 15.09.15.jpeg" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <h4>MARLIANA RIZKI GUSTRIANI</h4>
+        <p>Member VIII B</p>
+    </div>
+
+    <div class="member-card" data-aos="fade-up">
+        <div class="member-img"><img src="farhan.jpeg" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <h4>MUHAMMAD FARHAN ARROYAN</h4>
+        <p>Member VIII B</p>
+    </div>
+
+    <div class="member-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="member-img"><img src="WhatsApp Image 2026-03-18 at 15.09.70.jpeg" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <h4>RESTU ALAMSYAH</h4>
+        <p>Member VIII B</p>
+    </div>
+
+    <div class="member-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="member-img"><img src="WhatsApp Image 2026-03-18 at 15.09.86.jpeg" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <h4>RIZKA MAULIDIYAH</h4>
+        <p>Member VIII B</p>
+    </div>
+
+    <div class="member-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="member-img"><img src="WhatsApp Image 2026-03-18 at 16.49.01.jpeg" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <h4>SALWA NAFISAH</h4>
+        <p>Member VIII B</p>
+    </div>
+
+    <div class="member-card" data-aos="fade-up">
+        <div class="member-img"><img src="sat.jpeg" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <h4>SATRIA DWI SAPUTRA</h4>
+        <p>Member VIII B</p>
+    </div>
+
+    <div class="member-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="member-img"><img src="WhatsApp Image 2026-03-18 at 15.09.80.jpeg" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <h4>SITI ZAHRA TUNIKMAH</h4>
+        <p>Member VIII B</p>
+    </div>
+
+    <div class="member-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="member-img"><img src="siswa27.jpg" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <h4>YUMNA ATSSILAH RAMADHANI</h4>
+        <p>Member VIII B</p>
+    </div>
+
+    <div class="member-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="member-img"><img src="WhatsApp Image 2026-03-18 at 15.09.10.jpeg" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <h4>ZAHRA SEPTIANI</h4>
+        <p>Member VIII B</p>
+    </div>
+
+    <div class="member-card" data-aos="fade-up">
+        <div class="member-img"><img src="LELE .jpeg" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <h4>AKMAL ZAIDAN KAMIL</h4>
+        <p>Member VIII B</p>
+    </div>
+
+    <div class="member-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="member-img"><img src="WhatsApp Image 2026-03-18 at 16.12.23.jpeg" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <h4>AFIFAH NUR LILYANA</h4>
+        <p>Member VIII B</p>
+    </div>
+
+    <div class="member-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="member-img"><img src="siswa31.jpg" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <h4>FARZAN ANARGYA BAGUS</h4>
+        <p>Member VIII B</p>
+    </div>
+`;
+
+// --- BAGIAN AUDIO & LYRICS CONTROL (FIX LENGKAP) ---
 const audio = document.getElementById('mainAudio');
 const playBtn = document.getElementById('playBtn');
 const visualizer = document.getElementById('visualizer');
@@ -170,7 +336,6 @@ const progressBar = document.getElementById('progressBar');
 const currentTimeEl = document.getElementById('currentTime');
 const durationEl = document.getElementById('duration');
 const lyricsContainer = document.getElementById('lyricsContainer');
-
 const dataLirik = [
     { time: 0.0, text: "Teman datang ketika lagi butuh saja" },
     { time: 4.0, text: "Coba kalau lagi susah" },
@@ -184,70 +349,76 @@ const dataLirik = [
     { time: 37.3, text: "TANTEEE" }
 ];
 
-if(lyricsContainer) {
-    lyricsContainer.innerHTML = ''; 
-    dataLirik.forEach((item, index) => {
-        const p = document.createElement('p');
-        p.innerText = item.text;
-        p.className = 'lyric-line';
-        p.id = `lyric-${index}`;
-        lyricsContainer.appendChild(p);
-    });
-}
+// 1. Inisialisasi Lirik ke HTML
+lyricsContainer.innerHTML = ''; 
+dataLirik.forEach((item, index) => {
+    const p = document.createElement('p');
+    p.innerText = item.text;
+    p.className = 'lyric-line';
+    p.id = `lyric-${index}`;
+    lyricsContainer.appendChild(p);
+});
 
+// 2. Fungsi Format Waktu (Menit:Detik)
 function formatTime(seconds) {
     let min = Math.floor(seconds / 60);
     let sec = Math.floor(seconds % 60);
     return `${min}:${sec < 10 ? '0' + sec : sec}`;
 }
 
-if(audio) {
-    audio.onloadedmetadata = () => {
-        durationEl.innerText = formatTime(audio.duration);
-    };
+// 3. Set Durasi saat Audio Load
+audio.onloadedmetadata = () => {
+    durationEl.innerText = formatTime(audio.duration);
+};
 
-    playBtn.onclick = () => {
-        if (audio.paused) {
-            audio.play().then(() => {
-                playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-                visualizer.classList.add('playing');
-            }).catch(() => alert("File musik tidak ditemukan!"));
-        } else {
-            audio.pause();
-            playBtn.innerHTML = '<i class="fas fa-play"></i>';
-            visualizer.classList.remove('playing');
-        }
-    };
-
-    audio.ontimeupdate = () => {
-        const time = audio.currentTime;
-        if (!isNaN(audio.duration)) {
-            currentTimeEl.innerText = formatTime(time);
-            progressBar.value = (time / audio.duration) * 100;
-        }
-
-        dataLirik.forEach((item, index) => {
-            if (time >= item.time) {
-                document.querySelectorAll('.lyric-line').forEach(l => l.classList.remove('active'));
-                const activeLine = document.getElementById(`lyric-${index}`);
-                if (activeLine) {
-                    activeLine.classList.add('active');
-                    lyricsContainer.style.transform = `translateY(-${index * 40}px)`;
-                }
-            }
-        });
-    };
-
-    progressBar.oninput = () => {
-        if (!isNaN(audio.duration)) {
-            const seekTime = (progressBar.value / 100) * audio.duration;
-            audio.currentTime = seekTime;
-        }
-    };
-
-    audio.onended = () => {
+// 4. Tombol Play/Pause
+playBtn.onclick = () => {
+    if (audio.paused) {
+        audio.play().then(() => {
+            playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            visualizer.classList.add('playing');
+        }).catch(() => alert("File musik tidak ditemukan!"));
+    } else {
+        audio.pause();
         playBtn.innerHTML = '<i class="fas fa-play"></i>';
         visualizer.classList.remove('playing');
-        lyricsContainer.style.transform = `translateY(0)`;
-    };
-}
+    }
+};
+
+// 5. Update Progress & Lirik (Saat Lagu Jalan)
+audio.ontimeupdate = () => {
+    const time = audio.currentTime;
+    
+    // Update Teks Menit & Progress Bar
+    if (!isNaN(audio.duration)) {
+        currentTimeEl.innerText = formatTime(time);
+        progressBar.value = (time / audio.duration) * 100;
+    }
+
+    // Update Lirik (Scroll Otomatis)
+    dataLirik.forEach((item, index) => {
+        if (time >= item.time) {
+            document.querySelectorAll('.lyric-line').forEach(l => l.classList.remove('active'));
+            const activeLine = document.getElementById(`lyric-${index}`);
+            if (activeLine) {
+                activeLine.classList.add('active');
+                lyricsContainer.style.transform = `translateY(-${index * 40}px)`;
+            }
+        }
+    });
+};
+
+// 6. FUNGSI GESER PROGRESS BAR (Biar Normal Lagi)
+progressBar.oninput = () => {
+    if (!isNaN(audio.duration)) {
+        const seekTime = (progressBar.value / 100) * audio.duration;
+        audio.currentTime = seekTime;
+    }
+};
+
+// 7. Reset saat lagu selesai
+audio.onended = () => {
+    playBtn.innerHTML = '<i class="fas fa-play"></i>';
+    visualizer.classList.remove('playing');
+    lyricsContainer.style.transform = `translateY(0)`;
+};
