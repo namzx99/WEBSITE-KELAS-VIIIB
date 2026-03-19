@@ -37,31 +37,50 @@ nav {
 .nav-links a:hover { color: var(--primary); }
 
 /* HERO */
-.title-with-logo img, .hero-logo {
-    width: 70px !important;
-    height: 70px !important;
-    border-radius: 50% !important; /* Paksa bulat */
-    object-fit: cover !important; /* Gambar di dalemnya tetep cakep */
-    flex-shrink: 0 !important; /* Anti kegencet flexbox */
+.title-with-logo { display: flex; align-items: center; gap: 15px; }
+.hero-logo { width: 60px; height: 60px; object-fit: contain; }
+
+.hero { height: 100vh; background: var(--dark); display: flex; align-items: center; padding: 0 10%; color: white; justify-content: space-between; }
+.hero-text h1 { font-size: 3rem; margin: 0; }
+
+.window-code {
+    background: #1e1e1e; width: 350px; padding: 20px; border-radius: 12px;
+    border: 1px solid #333; animation: floating 4s infinite ease-in-out;
+}
+.win-head span { width: 12px; height: 12px; border-radius: 50%; display: inline-block; margin-right: 5px; }
+.r { background: #ff5f56; } .y { background: #ffbd2e; } .g { background: #27c93f; }
+.win-body { font-family: 'Courier New', monospace; margin-top: 15px; font-size: 0.9rem; }
+.keyword { color: #c678dd; } .var { color: #e06c75; } .prop { color: #d19a66; } .str { color: #98c379; } .num { color: #d19a66; }
+.idnt { padding-left: 20px; }
+.lingkaran-foto {
+  width: 79px;
+  height: 70px;
+  border-radius: 50%;
+  overflow: hidden; /* Memotong bagian gambar yang keluar dari lingkaran */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.window-controls {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 15px;
-    justify-content: flex-start; /* Paksa ke kiri */
+.lingkaran-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.window-controls span {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
+/* Update Window Code Lu */
+.window-code {
+    background: #1e1e1e;
+    width: 90%; /* Pake persentase biar gak lebar banget di HP */
+    max-width: 400px; /* Batas maksimal di laptop */
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #333;
+    animation: floating 4s infinite ease-in-out;
+    margin: 30px auto; /* KUNCI RATA TENGAH: Atas-bawah 30px, Kiri-kanan auto */
+    box-sizing: border-box;
 }
 
-/* Warna spesifik sesuai urutan standar window */
-.dot-red { background: #ff5f56; }
-.dot-yellow { background: #ffbd2e; }
-.dot-green { background: #27c93f; }
 /* Biar Hero Section di HP tumpuk ke bawah (rata tengah) */
 @media (max-width: 768px) {
     .hero {
@@ -449,7 +468,6 @@ nav {
     margin: 0 auto 10px;
     flex-shrink: 0; /* Gak boleh mengecil saat kena konten lain */
 }
-
 .window-code {
     background: #1e1e1e; width: 350px; padding: 20px; border-radius: 12px;
     border: 1px solid #333; animation: floating 4s infinite ease-in-out;
@@ -598,7 +616,7 @@ html, body {
     padding: 0;
     width: 100%;
     min-height: 100vh; /* Pastiin minimal setinggi layar */
-    background: radial-gradient(circle at top left, #012cee 0%, #000000 70%) no-repeat fixed !important; /* Fixed biar background nggak ikut scroll */
+    background: radial-gradient(circle at top left, #012cee 0%, #7a7a7a 70%) no-repeat fixed !important; /* Fixed biar background nggak ikut scroll */
     background-size: cover !important;
 }
 
@@ -842,19 +860,3 @@ html, body {
     transform: translateX(5px); /* Efek geser dikit pas di-hover */
 }
 
-@media (max-width: 768px) {
-    /* Bungkus bagian yang lebar biar bisa di-slide pakai jempol */
-    #structure, #schedule {
-        width: 100% !important;
-        overflow-x: auto !important; /* KUNCI: Aktifin scroll horizontal */
-        display: block !important;
-        padding-bottom: 15px;
-        -webkit-overflow-scrolling: touch; /* Biar scroll-nya mulus di HP */
-    }
-
-    /* Paksa bagan di dalemnya punya lebar minimal biar gak tumpuk-tumpukan */
-    .tree, .schedule-box {
-        min-width: 600px !important; 
-        margin: 0 auto;
-    }
-}
