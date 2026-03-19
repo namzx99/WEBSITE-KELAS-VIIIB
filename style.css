@@ -39,6 +39,20 @@ nav {
 /* HERO */
 .title-with-logo { display: flex; align-items: center; gap: 15px; }
 .hero-logo { width: 60px; height: 60px; object-fit: contain; }
+/* Tambahkan ini biar semua logo & foto gak kepaksa gepeng */
+img {
+    max-width: 100%;
+    height: auto !important; /* Ini wajib biar tinggi ngikutin lebar */
+    object-fit: contain; 
+}
+
+/* Khusus Logo di Footer biar tetep proporsional */
+.footer-logo img {
+    width: 80px; 
+    height: auto !important; /* Paksa auto biar gak gepeng */
+    display: block;
+    margin: 0 auto;
+}
 .hero { height: 100vh; background: var(--dark); display: flex; align-items: center; padding: 0 10%; color: white; justify-content: space-between; }
 .hero-text h1 { font-size: 3rem; margin: 0; }
 
@@ -67,10 +81,29 @@ nav {
   object-fit: cover;
 }
 
-.footer-logo img {
-    width: 80px;         /* Ukuran lebih pas buat HP */
-    height: auto;        /* KUNCI: Biar tingginya ngikutin lebar, jadi gak gepeng */
-    object-fit: contain; /* Memastikan gambar tetap utuh di dalam area */
+/* Update Window Code Lu */
+.window-code {
+    background: #1e1e1e;
+    width: 90%; /* Pake persentase biar gak lebar banget di HP */
+    max-width: 400px; /* Batas maksimal di laptop */
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #333;
+    animation: floating 4s infinite ease-in-out;
+    margin: 30px auto; /* KUNCI RATA TENGAH: Atas-bawah 30px, Kiri-kanan auto */
+    box-sizing: border-box;
+}
+
+/* Biar Hero Section di HP tumpuk ke bawah (rata tengah) */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column !important; /* Biar teks dan window code atas-bawah */
+        justify-content: center !important;
+        text-align: center !important;
+        height: auto !important;
+        padding: 100px 20px !important;
+        gap: 40px;
+    }
 }
 
 /* TEACHERS UI */
