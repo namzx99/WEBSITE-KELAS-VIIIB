@@ -389,3 +389,21 @@ body {
     opacity: 1;
     transform: translateY(0);
 }
+
+.footer-link {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600; /* Sesuai ketebalan di gambar */
+    margin-bottom: 10px;
+    color: white;
+    text-decoration: none; /* Biar gak ada garis bawah biru jadul */
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.footer-link:hover {
+    color: #00f2ff; /* Warna cyan biar matching sama tema */
+    text-shadow: 0 0 10px rgba(0, 242, 255, 0.8);
+    transform: translateX(5px); /* Efek geser dikit pas di-hover */
+}
+
