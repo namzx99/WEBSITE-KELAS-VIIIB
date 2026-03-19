@@ -67,6 +67,12 @@ nav {
   object-fit: cover;
 }
 
+.footer-logo img {
+    width: 80px;         /* Ukuran lebih pas buat HP */
+    height: auto;        /* KUNCI: Biar tingginya ngikutin lebar, jadi gak gepeng */
+    object-fit: contain; /* Memastikan gambar tetap utuh di dalam area */
+}
+
 /* TEACHERS UI */
 .teachers-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 40px; }
 .teacher-card {
