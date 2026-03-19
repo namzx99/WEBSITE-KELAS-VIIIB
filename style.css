@@ -840,83 +840,50 @@ body {
     text-shadow: 0 0 10px rgba(0, 242, 255, 0.8);
     transform: translateX(5px); /* Efek geser dikit pas di-hover */
 }
+
 @media (max-width: 768px) {
-    /* Container jadi full lebar di HP */
-    .container, .sheet {
+    /* 1. Navbar: Link dikecilin biar gak numpuk */
+    nav {
+        padding: 10px 5% !important;
+        flex-wrap: wrap; /* Biar kalau gak muat nambah baris bawah, gak maksa ke samping */
+    }
+    .nav-links {
+        gap: 10px !important;
+        font-size: 0.8rem !important;
+    }
+
+    /* 2. Logo: Paksa Bulat Sempurna */
+    .hero-logo, .nav-logo img, .footer-logo img {
+        width: 60px !important;
+        height: 60px !important; /* Wajib sama nilainya sama width */
+        border-radius: 50% !important; /* Paksa bulat */
+        object-fit: cover !important; /* Biar gak gepeng di dalem lingkaran */
+    }
+
+    /* 3. Our Moment: ANTI KEPOTONG */
+    #moment, .container, .moments-grid {
         width: 100% !important;
-        padding: 20px 15px !important;
+        padding: 0 !important;
         margin: 0 !important;
+        overflow: visible !important; /* Biar kontennya gak kepangkas */
     }
 
-    /* Grid Member jadi 2 kolom biar gak sempit banget */
-    .members-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 15px !important;
-    }
-
-    /* Footer dibikin rata tengah kalau di HP biar rapi */
-    .footer-container {
-        align-items: center !important;
-        text-align: center;
-    }
-
-    .footer-content {
-        flex-direction: column;
-        gap: 30px;
-        align-items: center;
-    }
-}
-
-.footer-logo img {
-    width: 80px;         /* Ukuran lebih pas buat HP */
-    height: auto;        /* KUNCI: Biar tingginya ngikutin lebar, jadi gak gepeng */
-    object-fit: contain; /* Memastikan gambar tetap utuh di dalam area */
-}
-
-@media (max-width: 768px) {
-    /* 1. Bikin Hero & Window Code Rata Tengah */
-    .hero {
-        flex-direction: column !important;
-        justify-content: center !important;
-        text-align: center !important;
-        height: auto !important;
-        padding: 80px 20px !important;
-        gap: 30px;
-    }
-
-    .window-code {
-        margin: 0 auto !important; /* Paksa ke tengah */
-        width: 100% !important;
-        max-width: 320px;
-    }
-
-    /* 2. FIX OUR MOMENT (Biar Gak Kepotong) */
     .moments-grid {
-        display: grid !important; /* Balikin ke grid, jangan flex */
-        grid-template-columns: 1fr !important; /* Satu kolom aja di HP biar gede */
+        display: flex !important;
+        flex-direction: column !important; /* Tumpuk ke bawah satu-satu */
+        align-items: center !important;
         gap: 20px !important;
-        width: 100% !important;
-        padding: 0 10px !important;
     }
 
     .moment-item {
-        width: 100% !important;
-        height: 250px !important; /* Tetap kasih tinggi biar gak gepeng */
-        margin: 0 auto;
+        width: 90% !important; /* Jangan 100% biar ada space dikit di kiri kanan */
+        height: auto !important; /* Biar tingginya ngikutin foto asli */
+        max-height: 300px;
     }
 
-    /* 3. Global Anti-Gepeng buat Semua Gambar */
-    img {
-        height: auto !important; 
-        object-fit: cover !important; /* Biar foto moments tetep cakep */
-    }
-
-    /* 4. Footer Rata Tengah */
-    .footer-container, .footer-content {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        text-align: center !important;
-        gap: 20px !important;
+    /* 4. Window Code Rata Tengah */
+    .window-code {
+        width: 90% !important;
+        margin: 20px auto !important;
     }
 }
