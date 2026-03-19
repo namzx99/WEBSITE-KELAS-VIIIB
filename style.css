@@ -839,22 +839,61 @@ body, .container-v8 {
 }
 
 @media (max-width: 768px) {
-    /* 1. Bungkus Structure & Schedule biar bisa di-geser kanan-kiri */
-    #structure, #schedule {
+    /* 1. NAVBAR: Biar gak kepotong, kita bikin bisa scroll horizontal kalau kepanjangan */
+    nav {
+        padding: 10px 5% !important;
+        justify-content: center !important;
+    }
+    .nav-links {
+        gap: 12px !important;
+        font-size: 0.75rem !important;
+        flex-wrap: nowrap !important; /* Biar tetap sebaris tapi bisa geser */
+        overflow-x: auto;
+        width: 100%;
+        padding-bottom: 5px;
+    }
+
+    /* 2. LOGO SAMPING WELCOME: Biar GAK GEPENG & BULAT */
+    .hero-logo, .title-with-logo img {
+        width: 70px !important;   /* Ukuran lebar */
+        height: 70px !important;  /* Tinggi WAJIB SAMA biar bulat */
+        min-width: 70px !important;
+        border-radius: 50% !important;
+        object-fit: cover !important; /* Biar gambar di dalemnya gak ketarik */
+        display: block;
+        flex-shrink: 0; /* Biar gak kegencet sama teks sebelah */
+    }
+
+    /* 3. HERO SECTION: Biar teks & logo gak tabrakan */
+    .title-with-logo {
+        flex-direction: column !important; /* Tumpuk logo di atas tulisan Welcome */
+        gap: 10px;
+        align-items: center !important;
+    }
+    .hero-text h1 {
+        font-size: 1.8rem !important;
+        text-align: center;
+    }
+
+    /* 4. MOMENT & SQUAD: Biar GAK KEPOTONG SAMPING */
+    #moment, #squad, .sheet, .container {
         width: 100% !important;
-        overflow-x: auto !important; /* Munculkan scroll horizontal */
-        padding-bottom: 20px;
-        display: block !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+        box-sizing: border-box !important;
+        overflow: visible !important;
     }
 
-    /* 2. Paksa isi di dalemnya tetep lebar aslinya (gak kegencet) */
-    .tree, .schedule-box {
-        min-width: 500px; /* Biar bagan gak numpuk parah */
-        margin: 0 auto;
+    .moments-grid, .members-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
     }
 
-    /* 3. Atur ulang tinggi visualizer musik biar gak berantakan */
-    .visualizer {
-        gap: 2px !important;
+    .moment-item {
+        width: 100% !important;
+        max-width: 350px; /* Biar gak terlalu raksasa di HP */
+        height: auto !important;
     }
 }
