@@ -67,6 +67,12 @@ nav {
   object-fit: cover;
 }
 
+.footer-logo img {
+    width: 80px;         /* Ukuran lebih pas buat HP */
+    height: auto;        /* KUNCI: Biar tingginya ngikutin lebar, jadi gak gepeng */
+    object-fit: contain; /* Memastikan gambar tetap utuh di dalam area */
+}
+
 /* TEACHERS UI */
 .teachers-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 40px; }
 .teacher-card {
@@ -348,12 +354,20 @@ body {
     color: rgba(0, 0, 0, 0.3); /* Lirik pasif transparan */
     margin: 0;
     transition: all 0.3s;
+}.lyrics-container {
+    font-size: 0.9rem;   /* Kecilin dikit buat HP */
+    line-height: 1.6;    /* Kasih jarak antar baris biar gak numpuk */
+    padding: 10px;
+    text-align: center;
+    max-height: 150px;   /* Batasin biar gak kepanjangan */
+    overflow-y: auto;    /* Biar bisa di-scroll kalau liriknya panjang */
 }
 
 .lyric-line.active {
     color: #00c3ff; /* Warna lirik aktif */
     transform: scale(1.1);
 }
+
 
 /* Lainnya */
 .sheet { padding: 80px 10%; text-align: center; }
@@ -391,4 +405,31 @@ body {
     color: #00f2ff; /* Warna cyan biar matching sama tema */
     text-shadow: 0 0 10px rgba(0, 242, 255, 0.8);
     transform: translateX(5px); /* Efek geser dikit pas di-hover */
+}
+
+@media (max-width: 768px) {
+    /* Container jadi full lebar di HP */
+    .container, .sheet {
+        width: 100% !important;
+        padding: 20px 15px !important;
+        margin: 0 !important;
+    }
+
+    /* Grid Member jadi 2 kolom biar gak sempit banget */
+    .members-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px !important;
+    }
+
+    /* Footer dibikin rata tengah kalau di HP biar rapi */
+    .footer-container {
+        align-items: center !important;
+        text-align: center;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+    }
 }
