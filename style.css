@@ -35,6 +35,14 @@ nav {
 .nav-links { display: flex; list-style: none; gap: 20px; }
 .nav-links a { text-decoration: none; color: #333; font-weight: bold; transition: 0.3s; }
 .nav-links a:hover { color: var(--primary); }
+/* Logo di Header atau Footer */
+.footer-logo img, .navbar-brand img, .logo-img {
+    width: 100px;         /* Lu boleh ganti ukurannya, misal 80px atau 120px */
+    height: auto !important; /* KUNCI UTAMA: Biar tinggi ngikutin lebar secara otomatis */
+    object-fit: contain;  /* Biar gambar tetep di dalem kotak tanpa kepotong */
+    display: block;
+    margin: 0 auto;       /* Biar logo rata tengah */
+}
 
 /* HERO */
 .title-with-logo { display: flex; align-items: center; gap: 15px; }
@@ -67,11 +75,6 @@ nav {
   object-fit: cover;
 }
 
-.footer-logo img {
-    width: 80px;         /* Ukuran lebih pas buat HP */
-    height: auto;        /* KUNCI: Biar tingginya ngikutin lebar, jadi gak gepeng */
-    object-fit: contain; /* Memastikan gambar tetap utuh di dalam area */
-}
 
 /* TEACHERS UI */
 .teachers-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 40px; }
@@ -390,46 +393,32 @@ body {
     transform: translateY(0);
 }
 
-.footer-link {
-    display: block;
-    font-size: 1.1rem;
-    font-weight: 600; /* Sesuai ketebalan di gambar */
-    margin-bottom: 10px;
-    color: white;
-    text-decoration: none; /* Biar gak ada garis bawah biru jadul */
-    transition: all 0.3s ease;
-    cursor: pointer;
-}
-
-.footer-link:hover {
-    color: #00f2ff; /* Warna cyan biar matching sama tema */
-    text-shadow: 0 0 10px rgba(0, 242, 255, 0.8);
-    transform: translateX(5px); /* Efek geser dikit pas di-hover */
-}
-
 @media (max-width: 768px) {
-    /* Container jadi full lebar di HP */
-    .container, .sheet {
+    /* Paksa semua kontainer utama jadi rata tengah */
+    .container, .sheet, .section-dark, .footer-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Rata tengah horizontal */
+        justify-content: center;
+        text-align: center;   /* Biar teks di dalemnya juga tengah */
         width: 100% !important;
-        padding: 20px 15px !important;
-        margin: 0 !important;
+        padding: 20px 10px !important;
     }
 
-    /* Grid Member jadi 2 kolom biar gak sempit banget */
-    .members-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 15px !important;
-    }
-
-    /* Footer dibikin rata tengah kalau di HP biar rapi */
-    .footer-container {
-        align-items: center !important;
+    /* Biar lirik tetep rapi di tengah */
+    .lyrics-container {
+        width: 90%;
+        margin: 0 auto;
         text-align: center;
+        line-height: 1.8; /* Kasih jarak biar enak dibaca */
     }
 
+    /* Footer Created By & Follow Us jadi tumpuk ke bawah tapi tengah */
     .footer-content {
+        display: flex;
         flex-direction: column;
         gap: 30px;
         align-items: center;
+        width: 100%;
     }
 }
