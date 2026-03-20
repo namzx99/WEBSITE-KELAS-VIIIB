@@ -352,33 +352,54 @@ body {
 @keyframes floating { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 /* --- LYRICS UI --- */
 .lyrics-window {
-    height: 80px; /* Tinggi kotak lirik */
+    height: 140px;
     overflow: hidden;
     margin: 20px 0;
     position: relative;
-    display: flex;
-    justify-content: center;
+    display: block;
+    padding: 10px;
+    border-radius: 14px;
+    background: #f8fbff;
+    border: 1px solid #dce7f2;
 }
 
 #lyricsContainer {
     width: 100%;
-    transition: transform 0.4s ease-in-out; /* Efek scroll halus */
+    transition: transform 0.3s ease;
     text-align: center;
+    line-height: 1.4;
+    padding: 5px 0;
 }
 
 .lyric-line {
-    height: 40px; /* Tinggi per baris lirik */
-    line-height: 40px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: rgba(0, 0, 0, 0.3); /* Lirik pasif transparan */
-    margin: 0;
-    transition: all 0.3s;
+    display: block;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    min-height: 1.7rem;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.45);
+    margin: 4px 0;
+    white-space: normal;
+    transition: all 0.2s ease;
+    padding: 0 6px;
 }
 
 .lyric-line.active {
-    color: #00c3ff; /* Warna lirik aktif */
-    transform: scale(1.1);
+    color: #0056d6;
+    background: rgba(0, 123, 255, 0.08);
+    border-radius: 8px;
+    transform: scale(1.02);
+    margin: 4px 0;
+}
+
+@media (max-width: 768px) {
+    .lyrics-window {
+        height: 150px;
+    }
+    .lyric-line {
+        font-size: 0.88rem;
+        min-height: 1.6rem;
+    }
 }
 
 .lyrics-container {
@@ -389,6 +410,7 @@ body {
     max-height: 150px;   /* Batasin biar gak kepanjangan */
     overflow-y: auto;    /* Biar bisa di-scroll kalau liriknya panjang */
 }
+
 
 /* Lainnya */
 .sheet { padding: 80px 10%; text-align: center; }
@@ -784,33 +806,54 @@ html, body {
 @keyframes floating { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 /* --- LYRICS UI --- */
 .lyrics-window {
-    height: 80px; /* Tinggi kotak lirik */
+    height: 140px;
     overflow: hidden;
     margin: 20px 0;
     position: relative;
-    display: flex;
-    justify-content: center;
+    display: block;
+    padding: 10px;
+    border-radius: 14px;
+    background: #f8fbff;
+    border: 1px solid #dce7f2;
 }
 
 #lyricsContainer {
     width: 100%;
-    transition: transform 0.4s ease-in-out; /* Efek scroll halus */
+    transition: transform 0.3s ease;
     text-align: center;
+    line-height: 1.4;
+    padding: 5px 0;
 }
 
 .lyric-line {
-    height: 40px; /* Tinggi per baris lirik */
-    line-height: 40px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    color: rgba(0, 0, 0, 0.3); /* Lirik pasif transparan */
-    margin: 0;
-    transition: all 0.3s;
+    display: block;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    min-height: 1.7rem;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.45);
+    margin: 4px 0;
+    white-space: normal;
+    transition: all 0.2s ease;
+    padding: 0 6px;
 }
 
 .lyric-line.active {
-    color: #00c3ff; /* Warna lirik aktif */
-    transform: scale(1.1);
+    color: #0056d6;
+    background: rgba(0, 123, 255, 0.08);
+    border-radius: 8px;
+    transform: scale(1.02);
+    margin: 4px 0;
+}
+
+@media (max-width: 768px) {
+    .lyrics-window {
+        height: 150px;
+    }
+    .lyric-line {
+        font-size: 0.88rem;
+        min-height: 1.6rem;
+    }
 }
 
 .lyrics-container {
@@ -821,6 +864,7 @@ html, body {
     max-height: 150px;   /* Batasin biar gak kepanjangan */
     overflow-y: auto;    /* Biar bisa di-scroll kalau liriknya panjang */
 }
+
 
 /* Lainnya */
 .sheet { padding: 80px 10%; text-align: center; }
@@ -985,37 +1029,7 @@ nav {
 .nav-links::-webkit-scrollbar { display: none; } /* Sembunyikan scrollbar Chrome/Safari */
 
 /* --- FIX LIRIK (BIAR GAK NUMPUK/KEPOTONG) --- */
-.lyrics-window {
-    height: 60px; /* Tinggi kotak lirik (cukup 1-2 baris) */
-    overflow: hidden;
-    margin: 20px 0;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
 
-#lyricsContainer {
-    width: 100%;
-    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Animasi smooth */
-    text-align: center;
-}
-
-.lyric-line {
-    height: 60px; /* Harus SAMA dengan tinggi .lyrics-window */
-    line-height: 60px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: rgba(0, 0, 0, 0.1); /* Lirik belum aktif hampir transparan */
-    margin: 0 !important;
-    transition: all 0.3s ease;
-}
-
-.lyric-line.active {
-    color: #00c3ff;
-    opacity: 1;
-    transform: scale(1.1);
-}
 
 /* --- FIX PROGRESS BAR --- */
 .progress {
@@ -1024,4 +1038,33 @@ nav {
     accent-color: #00c3ff;
     height: 8px;
     border-radius: 10px;
+}
+
+/* Menghilangkan garis biru di logo */
+.lingkaran-foto, .hero-logo {
+    border: none !important; /* Hapus border biru */
+    box-shadow: none !important; /* Hapus bayangan biru */
+    outline: none !important;
+}
+
+/* Lirik agar terlihat jelas */
+.lyrics-window {
+    height: 100px;
+    background: rgba(255, 255, 255, 0.8); /* Kasih background tipis biar kebaca */
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.lyric-line {
+    color: #333 !important; /* Warna teks hitam biar kontras */
+    font-size: 1.2rem;
+    font-weight: bold;
+    opacity: 0.3;
+    transition: all 0.3s;
+}
+
+.lyric-line.active {
+    color: #007bff !important; /* Warna biru cuma buat lirik yang lagi nyanyi */
+    opacity: 1;
+    transform: scale(1.1);
 }
