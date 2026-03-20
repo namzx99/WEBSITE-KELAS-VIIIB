@@ -413,7 +413,9 @@ audio.ontimeupdate = () => {
 
     const target = document.getElementById(`lyric-${activeIndex}`);
     if (target) {
-        const offset = target.offsetTop - 20;
+        const containerHeight = target.parentElement.offsetHeight;
+        const lineHeight = target.offsetHeight + 6;
+        const offset = Math.max(0, activeIndex * lineHeight - 12);
         lyricsContainer.style.transform = `translateY(-${offset}px)`;
     }
 };
