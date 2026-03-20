@@ -361,14 +361,16 @@ dataLirik.forEach((item, index) => {
 
 // 2. Fungsi Format Waktu (Menit:Detik)
 function formatTime(seconds) {
-    let min = Math.floor(seconds / 60);
-    let sec = Math.floor(seconds % 60);
+    const min = Math.floor(seconds / 60);
+    const sec = Math.floor(seconds % 60);
     return `${min}:${sec < 10 ? '0' + sec : sec}`;
 }
 
 // 3. Set Durasi saat Audio Load
 audio.onloadedmetadata = () => {
     durationEl.innerText = formatTime(audio.duration);
+    progressBar.value = 0;
+    progressBar.max = 100;
 };
 
 // 4. Tombol Play/Pause
@@ -388,58 +390,52 @@ playBtn.onclick = () => {
 // 5. Update Progress & Lirik (Saat Lagu Jalan)
 audio.ontimeupdate = () => {
     const time = audio.currentTime;
-    
-    // Update Teks Menit & Progress Bar
+
     if (!isNaN(audio.duration)) {
         currentTimeEl.innerText = formatTime(time);
+        durationEl.innerText = formatTime(audio.duration);
         progressBar.value = (time / audio.duration) * 100;
     }
 
-    // Update Lirik (Scroll Otomatis)
-    dataLirik.forEach((item, index) => {
-        if (time >= item.time) {
-            document.querySelectorAll('.lyric-line').forEach(l => l.classList.remove('active'));
-            const activeLine = document.getElementById(`lyric-${index}`);
-            if (activeLine) {
-                activeLine.classList.add('active');
-                lyricsContainer.style.transform = `translateY(-${index * 50}px)`;
-            }
+    // Update Lirik (Scroll Otomatis tanpa resettin detik)
+    let activeIndex = 0;
+    for (let i = 0; i < dataLirik.length; i++) {
+        if (time >= dataLirik[i].time) {
+            activeIndex = i;
+        } else {
+            break;
         }
+    }
+
+    document.querySelectorAll('.lyric-line').forEach((line, i) => {
+        line.classList.toggle('active', i === activeIndex);
     });
+
+    const target = document.getElementById(`lyric-${activeIndex}`);
+    if (target) {
+        const offset = target.offsetTop - 20;
+        lyricsContainer.style.transform = `translateY(-${offset}px)`;
+    }
 };
 
-// 6. FUNGSI GESER PROGRESS BAR (Biar Normal Lagi)
-const audioElement = document.getElementById('myAudio');
-
-// Saat metadata audio dimuat (durasi asli muncul)
-audioElement.onloadedmetadata = function() {
-    progressBar.max = audioElement.duration;
-    durationEl.innerText = formatTime(audioElement.duration);
-};
-
-// Update progress bar & angka waktu saat lagu jalan
-audioElement.addEventListener('timeupdate', () => {
-    progressBar.value = audioElement.currentTime;
-    currentTimeEl.innerText = formatTime(audioElement.currentTime);
-});
-
-// Biar bisa di-drag/geser manual
+// 6. Biar bisa geser progress bar manual
 progressBar.addEventListener('input', () => {
-    audioElement.currentTime = progressBar.value;
+    if (!isNaN(audio.duration) && audio.duration > 0) {
+        const seekTime = (progressBar.value / 100) * audio.duration;
+        audio.currentTime = seekTime;
+    }
 });
-
-// Fungsi pembantu buat format detik ke 0:00
-function formatTime(seconds) {
-    let min = Math.floor(seconds / 60);
-    let sec = Math.floor(seconds % 60);
-    if (sec < 10) sec = `0${sec}`;
-    return `${min}:${sec}`;
-}
 
 // 7. Reset saat lagu selesai
 audio.onended = () => {
+    audio.currentTime = 0;
+    progressBar.value = 0;
+    currentTimeEl.innerText = formatTime(0);
     playBtn.innerHTML = '<i class="fas fa-play"></i>';
     visualizer.classList.remove('playing');
-    lyricsContainer.style.transform = `translateY(0)`;
+    lyricsContainer.style.transform = 'translateY(0)';
+    document.querySelectorAll('.lyric-line').forEach(l => l.classList.remove('active'));
+    const firstLine = document.getElementById('lyric-0');
+    if (firstLine) firstLine.classList.add('active');
 };
 
