@@ -143,7 +143,7 @@ window.onload = () => {
 grid.innerHTML = `
     <div class="member-card" data-aos="fade-up">
         <div class="member-img"><img src="WhatsApp Image 2026-03-18 at 15.09.05.jpeg" onerror="this.src='https://via.placeholder.com/150'"></div>
-        <h4>ABYAN FIKRI MUSYAFAH</h4>
+        <h4>ABYAN FIKRI MUSYAFA</h4>
         <p>Wakil Ketua Kelas VIII B</p>
     </div>
 
@@ -402,19 +402,39 @@ audio.ontimeupdate = () => {
             const activeLine = document.getElementById(`lyric-${index}`);
             if (activeLine) {
                 activeLine.classList.add('active');
-                lyricsContainer.style.transform = `translateY(-${index * 40}px)`;
+                lyricsContainer.style.transform = `translateY(-${index * 50}px)`;
             }
         }
     });
 };
 
 // 6. FUNGSI GESER PROGRESS BAR (Biar Normal Lagi)
-progressBar.oninput = () => {
-    if (!isNaN(audio.duration)) {
-        const seekTime = (progressBar.value / 100) * audio.duration;
-        audio.currentTime = seekTime;
-    }
+const audioElement = document.getElementById('myAudio');
+
+// Saat metadata audio dimuat (durasi asli muncul)
+audioElement.onloadedmetadata = function() {
+    progressBar.max = audioElement.duration;
+    durationEl.innerText = formatTime(audioElement.duration);
 };
+
+// Update progress bar & angka waktu saat lagu jalan
+audioElement.addEventListener('timeupdate', () => {
+    progressBar.value = audioElement.currentTime;
+    currentTimeEl.innerText = formatTime(audioElement.currentTime);
+});
+
+// Biar bisa di-drag/geser manual
+progressBar.addEventListener('input', () => {
+    audioElement.currentTime = progressBar.value;
+});
+
+// Fungsi pembantu buat format detik ke 0:00
+function formatTime(seconds) {
+    let min = Math.floor(seconds / 60);
+    let sec = Math.floor(seconds % 60);
+    if (sec < 10) sec = `0${sec}`;
+    return `${min}:${sec}`;
+}
 
 // 7. Reset saat lagu selesai
 audio.onended = () => {
@@ -423,22 +443,3 @@ audio.onended = () => {
     lyricsContainer.style.transform = `translateY(0)`;
 };
 
-audio.ontimeupdate = () => {
-    const time = audio.currentTime;
-    
-    // ... kode progress bar lu tetep biarin ...
-
-    dataLirik.forEach((item, index) => {
-        if (time >= item.time) {
-            // Hapus semua class active dulu
-            document.querySelectorAll('.lyric-line').forEach(l => l.classList.remove('active'));
-            
-            const activeLine = document.getElementById(`lyric-${index}`);
-            if (activeLine) {
-                activeLine.classList.add('active');
-                // Geser container lirik ke ATAS (berdasarkan index * tinggi baris)
-                lyricsContainer.style.transform = `translateY(-${index * 50}px)`;
-            }
-        }
-    });
-};
