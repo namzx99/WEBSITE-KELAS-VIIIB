@@ -292,7 +292,7 @@ grid.innerHTML = `
     </div>
 
     <div class="member-card" data-aos="fade-up" data-aos-delay="100">
-        <div class="member-img"><img src="WhatsApp Image 2026-03-18 at 15.09.80.jpeg" onerror="this.src='https://via.placeholder.com/150'"></div>
+        <div class="member-img"><img src="asep.jpeg" onerror="this.src='https://via.placeholder.com/150'"></div>
         <h4>SITI ZAHRA TUNIKMAH</h4>
         <p>Member VIII B</p>
     </div>
