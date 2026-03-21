@@ -173,7 +173,7 @@ grid.innerHTML = `
 
     <div class="member-card" data-aos="fade-up" data-aos-delay="100">
         <div class="member-img"><img src="agus.jpeg" onerror="this.src='https://via.placeholder.com/150'"></div>
-        <h4>BINTANG ANDIKA PERMANA</h4>
+        <h4>BINTANG ANDHIKA PERMANA</h4>
         <p>Member VIII B</p>
     </div>
 
@@ -203,7 +203,7 @@ grid.innerHTML = `
 
     <div class="member-card" data-aos="fade-up" data-aos-delay="200">
         <div class="member-img"><img src="siswa11.jpg" onerror="this.src='https://via.placeholder.com/150'"></div>
-        <h4>FADLI NUR HAKIM</h4>
+        <h4>FADHLI NUR HAKIM</h4>
         <p>Member VIII B</p>
     </div>
 
@@ -233,7 +233,7 @@ grid.innerHTML = `
 
     <div class="member-card" data-aos="fade-up" data-aos-delay="300">
         <div class="member-img"><img src="siswa16.jpg" onerror="this.src='https://via.placeholder.com/150'"></div>
-        <h4>HANAN ZEIN AL HAZMI</h4>
+        <h4>HANAN ZEIN ALHAZMI</h4>
         <p>Member VIII B</p>
     </div>
 
@@ -299,7 +299,7 @@ grid.innerHTML = `
 
     <div class="member-card" data-aos="fade-up" data-aos-delay="200">
         <div class="member-img"><img src="siswa27.jpg" onerror="this.src='https://via.placeholder.com/150'"></div>
-        <h4>YUMNA ATSSILAH RAMADHANI</h4>
+        <h4>YUMNAA ATSSILAH RAMADHANI</h4>
         <p>Member VIII B</p>
     </div>
 
